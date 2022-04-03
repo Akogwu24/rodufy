@@ -3,7 +3,7 @@ import React from 'react';
 
 const InputField = (props) => {
   const { name, type, label, placeholder, onChange, value } = props;
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <FormLabel mb='0' mt='5' htmlFor={name}>

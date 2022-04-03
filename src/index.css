@@ -23,17 +23,15 @@ html {
 html,
 body {
   font-family: 'ChalkboardSE, sans-serif !important';
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
 }
 
 li {
