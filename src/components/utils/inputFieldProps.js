@@ -1,16 +1,14 @@
 export const inputFieldProps = [
   {
     id: 1,
-    name: 'name',
-    type: 'text',
-    label: 'name',
-    placeholder: 'Ciroma Adekunle',
+    name: 'email',
+    type: 'email',
+    placeholder: 'ciroma@adekule.com',
   },
   {
     id: 2,
-    name: 'email',
-    type: 'email',
-    label: 'Email',
-    placeholder: 'ciroma@adekule.com',
+    name: 'password',
+    type: 'password',
+    placeholder: '*****',
   },
 ];

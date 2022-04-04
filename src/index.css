@@ -37,3 +37,25 @@ a {
 li {
   list-style: none;
 }
+
+.post_card_text_container {
+  position: absolute;
+  border-radius: 10px;
+  bottom: 0;
+  left: 0;
+  transform: translate(0, -40%);
+  margin: 0 15px 10px;
+  background-color: #63626280;
+  overflow: hidden;
+  padding: 1.2rem;
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #fff;
+}

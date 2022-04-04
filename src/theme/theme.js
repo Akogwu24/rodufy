@@ -10,6 +10,7 @@ export const theme = extendTheme({
   styles: {
     global: {
       body: {
+        // clamp(0.9rem, 1vw + 1rem, 2.2rem)
         fontSize: '16px',
         fontFamily: 'ChalkboardSELight, sans-serif',
       },
