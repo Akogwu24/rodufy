@@ -1,21 +1,18 @@
 import { Box, Flex, FormControl, HStack, Text } from '@chakra-ui/react';
-import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import bgImg from '../../assets/images/Frame14.svg';
 import { inputFieldProps } from '../../components/utils/inputFieldProps';
 import InputField from '../../components/common/InputField';
 import CustomButton from '../../components/common/CustomButton';
-import { timeoutSetter } from '../../components/utils/timeoutSetter';
+
 import { ScaleFade } from '@chakra-ui/react';
 import { login } from '../../api/loginService';
-import { AuthContext } from '../../context/authContext';
 
 const Login = () => {
-  const navigate = useNavigate();
   const [values, setValues] = useState({ email: '', password: '' });
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const { setIsAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     const { email, password } = values;
@@ -30,12 +27,6 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login(values, setIsLoading);
-    // .then(() => navigate('/posts'))
-    // .catch((err) => {
-    //   console.log(err);
-    //   // navigate('/login');
-    // });
-    // .then(() => setIsAuthenticated(true))
   };
 
   return (

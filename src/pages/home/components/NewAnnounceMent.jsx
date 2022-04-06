@@ -3,7 +3,7 @@ import React from 'react';
 import Container from '../../../components/common/Container';
 import CustomButton from '../../../components/common/CustomButton';
 
-const NewAnnouncement = () => {
+const NewAnnouncement = ({ setShowAnnouncement }) => {
   return (
     <Box as='header' bg='secondary'>
       <Container>
@@ -17,7 +17,11 @@ const NewAnnouncement = () => {
           >
             Announcing our $15 million series A funding!
           </Text>
-          <CloseButton borderRadius='50%' border='2px solid white' />
+          <CloseButton
+            onClick={() => setShowAnnouncement(false)}
+            borderRadius='50%'
+            border='2px solid white'
+          />
         </HStack>
       </Container>
     </Box>

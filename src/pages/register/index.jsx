@@ -5,7 +5,6 @@ import bgImg from '../../assets/images/Frame14.svg';
 import { inputFieldProps } from '../../components/utils/inputFieldProps';
 import InputField from '../../components/common/InputField';
 import CustomButton from '../../components/common/CustomButton';
-import { timeoutSetter } from '../../components/utils/timeoutSetter';
 import { registerUser } from '../../api/registerService';
 import { ScaleFade } from '@chakra-ui/react';
 

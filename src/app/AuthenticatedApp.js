@@ -1,7 +1,6 @@
 import { Box } from '@chakra-ui/react';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
-import { AuthContext } from '../context/authContext';
 import Posts from '../pages/posts';
 
 const AuthenticatedApp = () => {
