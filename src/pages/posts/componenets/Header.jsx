@@ -3,18 +3,15 @@ import React, { useState, useEffect } from 'react';
 import Container from '../../../components/common/Container';
 import logo from '../../../assets/images/Vector.svg';
 import CustomButton from '../../../components/common/CustomButton';
-import { useNavigate } from 'react-router-dom';
 import { getLoggedInUser } from '../../../api/getLoggedInUser';
 
 function Header() {
-  // const userEmail = localStorage.getItem('55#555#');
   const [loggedInUser, setLoggedInUser] = useState('$Email');
 
   useEffect(() => {
     getLoggedInUser(setLoggedInUser);
   }, []);
 
-  // console.log('user email from LC', userEmail.split('@'));
   const handleLogOut = () => {
     localStorage.removeItem('11#221#');
     window.location.href = '/';

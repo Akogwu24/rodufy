@@ -12,7 +12,9 @@ const Home = () => {
   return (
     <ScaleFade in={true} initialScale={0.7}>
       <Box as='main'>
-        <NewAnnouncement />
+        {showAnnouncement && (
+          <NewAnnouncement setShowAnnouncement={setShowAnnouncement} />
+        )}
         <Hero />
         <TrainBoySection />
         <ContactUs />
