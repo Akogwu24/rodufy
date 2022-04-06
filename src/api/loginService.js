@@ -5,7 +5,7 @@ import {
   successNotifier,
 } from '../components/common/notificationHandler';
 
-export const login = async (values, setIsLoading, setIsAuthenticated) => {
+export const login = async (values, setIsLoading) => {
   setIsLoading(true);
   console.log(values, 'vvvv');
   try {
@@ -13,14 +13,11 @@ export const login = async (values, setIsLoading, setIsAuthenticated) => {
     console.log('fffffffff', response);
     response.success && successNotifier('Logged in Successfully');
     const token = response?.data?.token;
-    sessionStorage.setItem('11#221#', token);
+    localStorage.setItem('11#221#', token);
 
-    // if (token) {
-    //   window.location.pathname = '/posts';
-    //   setIsAuthenticated(true);
-    // } else {
-    //   window.location.pathname = '/';
-    // }
+    localStorage.setItem('55#555#', values.email);
+
+    window.location.href = '/posts';
     setIsLoading(false);
   } catch (error) {
     console.log(error.response);

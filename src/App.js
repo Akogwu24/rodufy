@@ -1,17 +1,17 @@
-import { useContext } from 'react';
 import './App.css';
 import AuthenticatedApp from './app/AuthenticatedApp';
 import UnAuthenticatedApp from './app/UnAuthenticatedApp';
-import { AuthContext } from './context/authContext';
 
 function App() {
-  const { isAuthenticated } = useContext(AuthContext);
-  console.log('isAuthenticated', isAuthenticated);
+  const tokenInLocalsStorage = localStorage.getItem('11#221#');
 
-  // if (isAuthenticated) return <AuthenticatedApp />;
-  // return <UnAuthenticatedApp />;
+  console.log('hhhhh', tokenInLocalsStorage);
 
-  return <AuthenticatedApp />;
+  if (tokenInLocalsStorage) {
+    return <AuthenticatedApp />;
+  } else {
+    return <UnAuthenticatedApp />;
+  }
 }
 
 export default App;

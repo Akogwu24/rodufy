@@ -1,10 +1,24 @@
 import { Box, Flex, HStack, Image, Stack, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from '../../../components/common/Container';
 import logo from '../../../assets/images/Vector.svg';
 import CustomButton from '../../../components/common/CustomButton';
+import { useNavigate } from 'react-router-dom';
+import { getLoggedInUser } from '../../../api/getLoggedInUser';
 
 function Header() {
+  // const userEmail = localStorage.getItem('55#555#');
+  const [loggedInUser, setLoggedInUser] = useState('$Email');
+
+  useEffect(() => {
+    getLoggedInUser(setLoggedInUser);
+  }, []);
+
+  // console.log('user email from LC', userEmail.split('@'));
+  const handleLogOut = () => {
+    localStorage.removeItem('11#221#');
+    window.location.href = '/';
+  };
   return (
     <Box as='header' bg='primary'>
       <Container color='#fff'>
@@ -17,9 +31,9 @@ function Header() {
           </HStack>
           <Stack>
             <Text textAlign='center' fontSize='20px'>
-              Hi $email
+              Hi {loggedInUser?.email?.split('@')[0] || 'lll'}
             </Text>
-            <CustomButton btnText='Logout' />
+            <CustomButton onClick={handleLogOut} btnText='Logout' />
           </Stack>
         </Flex>
       </Container>
@@ -28,3 +42,5 @@ function Header() {
 }
 
 export default Header;
+
+// 4600226467 vfd 2690

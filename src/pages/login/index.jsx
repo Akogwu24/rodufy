@@ -29,9 +29,13 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login(values, setIsLoading)
-      .then(() => setIsAuthenticated(true))
-      .then(() => navigate('/posts'));
+    login(values, setIsLoading);
+    // .then(() => navigate('/posts'))
+    // .catch((err) => {
+    //   console.log(err);
+    //   // navigate('/login');
+    // });
+    // .then(() => setIsAuthenticated(true))
   };
 
   return (
