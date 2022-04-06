@@ -1,21 +1,19 @@
-import { Box, Flex, FormControl, HStack, Link, Text } from '@chakra-ui/react';
+import { Box, Flex, FormControl, HStack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../../api/useFetch';
+import { Link, useNavigate } from 'react-router-dom';
 import bgImg from '../../assets/images/Frame14.svg';
 import { inputFieldProps } from '../../components/utils/inputFieldProps';
 import InputField from '../../components/common/InputField';
 import CustomButton from '../../components/common/CustomButton';
-import {
-  errorNotifier,
-  successNotifier,
-} from '../../components/common/notificationHandler';
 import { timeoutSetter } from '../../components/utils/timeoutSetter';
+import { registerUser } from '../../api/registerService';
+import { ScaleFade } from '@chakra-ui/react';
 
 const Register = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({ email: '', password: '' });
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -27,65 +25,56 @@ const Register = () => {
     email && password ? setIsDisabled(false) : setIsDisabled(true);
   }, [values]);
 
-  const handleRegister = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}auth/register`, {
-        method: 'POST',
-        body: JSON.stringify({ ...values }),
-        headers: { 'Content-type': 'application/json' },
-      });
-      if (!response.ok) {
-        const message = `An error has occured: ${response.status} - ${response.statusText}`;
-        throw new Error(message);
-      }
-      const data = await response.json();
-      console.log(data);
-      successNotifier(data?.data?.data);
-      timeoutSetter(() => navigate('/login'), 3000);
-    } catch (error) {
-      console.log(error, 'error');
-      errorNotifier(error.response.message);
-    }
+  const handleRegister = (e) => {
+    e.preventDefault();
+    registerUser(values, setIsLoading, navigate);
   };
 
   return (
-    <Flex as='main' w='100vw' h='100vh'>
-      <Box
-        // bgPosY='-100%'
-        bgSize='cover'
-        bgRepeat='no-repeat'
-        bgImage={bgImg}
-        flex={2}
-      ></Box>
-      <Flex justify='center' align='center' flex={8} bg='gray'>
-        <Box bg='#fff' p='10' borderRadius='10px' shadow='md'>
-          <FormControl w='300px'>
-            <Text as='h1'>Register</Text>
-            {inputFieldProps.map((inputFieldProp) => (
-              <InputField
-                key={inputFieldProp.id}
-                {...inputFieldProp}
-                onChange={onChangeHandler}
-              />
-            ))}
-            <Box mt='8' mb='3'>
-              <CustomButton
-                isDisabled={isDisabled}
-                onClick={handleRegister}
-                btnText='login'
-                w='100%'
-              />
-            </Box>
-            <HStack justify='center'>
-              <Text>Already have an account? </Text>
-              <Text fontFamily='ChalkboardSEBold'>
-                <Link>Register</Link>
-              </Text>
-            </HStack>
-          </FormControl>
-        </Box>
+    <ScaleFade in={true} initialScale={0.7}>
+      <Flex as='main' w='100vw' h='100vh'>
+        <Box
+          // bgPosY='-100%'
+          bgSize='cover'
+          bgRepeat='no-repeat'
+          bgImage={bgImg}
+          flex={[0, 3, 3, 2]}
+        ></Box>
+        <Flex justify='center' align='center' flex={8} bg='gray'>
+          <Box bg='#fff' p='10' borderRadius='10px' shadow='md'>
+            <FormControl w={['100%', '300px']}>
+              <Text as='h1'>Register</Text>
+              {inputFieldProps.map((inputFieldProp) => (
+                <InputField
+                  key={inputFieldProp.id}
+                  {...inputFieldProp}
+                  onChange={onChangeHandler}
+                />
+              ))}
+              <Box mt='8' mb='3'>
+                <CustomButton
+                  loadingText='Creating your account'
+                  isLoading={isLoading}
+                  isDisabled={isDisabled}
+                  onClick={handleRegister}
+                  btnText='Register'
+                  w='100%'
+                />
+              </Box>
+              <HStack justify='center'>
+                <Text>Already have an account? </Text>
+                <Text
+                  _hover={{ textDecoration: 'underline' }}
+                  fontFamily='ChalkboardSEBold'
+                >
+                  <Link to='/login'>Login</Link>
+                </Text>
+              </HStack>
+            </FormControl>
+          </Box>
+        </Flex>
       </Flex>
-    </Flex>
+    </ScaleFade>
   );
 };
 

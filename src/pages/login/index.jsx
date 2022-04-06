@@ -1,21 +1,21 @@
-import { Box, Flex, FormControl, HStack, Text, Link } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Box, Flex, FormControl, HStack, Text } from '@chakra-ui/react';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import bgImg from '../../assets/images/Frame14.svg';
 import { inputFieldProps } from '../../components/utils/inputFieldProps';
 import InputField from '../../components/common/InputField';
 import CustomButton from '../../components/common/CustomButton';
-import { BASE_URL } from '../../api/useFetch';
-import {
-  successNotifier,
-  errorNotifier,
-} from '../../components/common/notificationHandler';
 import { timeoutSetter } from '../../components/utils/timeoutSetter';
+import { ScaleFade } from '@chakra-ui/react';
+import { login } from '../../api/loginService';
+import { AuthContext } from '../../context/authContext';
 
 const Login = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({ email: '', password: '' });
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     const { email, password } = values;
@@ -27,65 +27,62 @@ const Login = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async () => {
-    console.log(values, 'vsdgsd');
-    try {
-      const response = await fetch(`${BASE_URL}auth/login`, {
-        method: 'POST',
-        body: JSON.stringify({ ...values }),
-        headers: { 'Content-type': 'application/json' },
-      });
-      if (!response.ok) {
-        const message = `An error has occured: ${response.status} - ${response.statusText}`;
-        throw new Error(message);
-      }
-      const data = await response.json();
-      console.log(data);
-      successNotifier(data?.data?.data);
-      timeoutSetter(() => navigate('/'), 3000);
-    } catch (error) {
-      errorNotifier();
-    }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(values, setIsLoading);
+    // .then(() => navigate('/posts'))
+    // .catch((err) => {
+    //   console.log(err);
+    //   // navigate('/login');
+    // });
+    // .then(() => setIsAuthenticated(true))
   };
 
   return (
-    <Flex as='main' w='100vw' h='100vh'>
-      <Box
-        // bgPosY='-100%'
-        bgSize='cover'
-        bgRepeat='no-repeat'
-        bgImage={bgImg}
-        flex={2}
-      ></Box>
-      <Flex justify='center' align='center' flex={8} bg='gray'>
-        <Box bg='#fff' p='10' borderRadius='10px' shadow='md'>
-          <FormControl w='300px'>
-            <Text as='h1'>Login</Text>
-            {inputFieldProps.map((inputFieldProp) => (
-              <InputField
-                key={inputFieldProp.id}
-                {...inputFieldProp}
-                onChange={onChangeHandler}
-              />
-            ))}
-            <Box mt='8' mb='3'>
-              <CustomButton
-                isDisabled={isDisabled}
-                onClick={handleLogin}
-                btnText='login'
-                w='100%'
-              />
-            </Box>
-            <HStack justify='center'>
-              <Text>Don't have an account? </Text>
-              <Text fontFamily='ChalkboardSEBold'>
-                <Link>Creact account</Link>
-              </Text>
-            </HStack>
-          </FormControl>
-        </Box>
+    <ScaleFade in={true} initialScale={0.7}>
+      <Flex as='main' w='100vw' h='100vh'>
+        <Box
+          // bgPosY='-100%'
+          bgSize='cover'
+          bgRepeat='no-repeat'
+          bgImage={bgImg}
+          flex={[0, 3, 3, 2]}
+        ></Box>
+        <Flex justify='center' align='center' flex={8} bg='gray'>
+          <Box bg='#fff' p='10' borderRadius='10px' shadow='md'>
+            <FormControl w={['100%', '300px']}>
+              <Text as='h1'>Login</Text>
+              {inputFieldProps.map((inputFieldProp) => (
+                <InputField
+                  key={inputFieldProp.id}
+                  {...inputFieldProp}
+                  onChange={onChangeHandler}
+                />
+              ))}
+              <Box mt='8' mb='3'>
+                <CustomButton
+                  loadingText='Logging you in'
+                  isLoading={isLoading}
+                  isDisabled={isDisabled}
+                  onClick={handleLogin}
+                  btnText='login'
+                  w='100%'
+                />
+              </Box>
+              <HStack justify='center'>
+                <Text>Don't have an account? </Text>
+                <Text
+                  fontFamily='ChalkboardSEBold'
+                  _hover={{ textDecoration: 'underline' }}
+                >
+                  <Link to='/register'>Creact account</Link>
+                </Text>
+              </HStack>
+            </FormControl>
+          </Box>
+        </Flex>
       </Flex>
-    </Flex>
+    </ScaleFade>
   );
 };
 

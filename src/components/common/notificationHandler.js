@@ -16,21 +16,10 @@ export const errorNotifier = (errorMessage) => {
 export const successNotifier = (info) => {
   return toast({
     title: 'Success',
-    description: info,
+    description: info || 'Success',
     status: 'success',
     duration: 5000,
     isClosable: true,
     position: 'top',
-  });
-};
-
-export const infoNotifier = (infoMessage) => {
-  return toast({
-    title: 'info',
-    description: infoMessage,
-    status: 'info',
-    duration: 5000,
-    isClosable: true,
-    position: 'top-right',
   });
 };

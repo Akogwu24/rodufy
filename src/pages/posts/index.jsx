@@ -1,19 +1,23 @@
 import { Box } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import CustomButton from '../../components/common/CustomButton';
+
+import FullPageLoader from '../../components/common/FullPageLoader';
 import Header from './componenets/Header';
 import TopPosts from './componenets/TopPosts';
 import TrendingPost from './componenets/TrendingPost';
-import { getPosts } from './service/getPost';
+import { getPosts } from '../../api/getPosts';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getPosts(setPosts);
+    getPosts(setPosts, setLoading);
   }, []);
 
-  return (
+  return loading ? (
+    <FullPageLoader />
+  ) : (
     <Box pb='20'>
       <Header />
       <TopPosts posts={posts.slice(0, 5)} />

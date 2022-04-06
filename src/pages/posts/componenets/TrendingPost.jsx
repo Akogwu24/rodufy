@@ -1,5 +1,5 @@
 import { Box, Circle, Grid, GridItem, HStack, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Container from '../../../components/common/Container';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import PostCard from './PostCard';
@@ -22,7 +22,15 @@ const TrendingPost = ({ posts }) => {
           </Circle>
           <Text fontWeight={'900'}>Trending</Text>
         </HStack>
-        <Grid templateColumns={['repeat(3, 1fr)']}>
+        <Grid
+          justifyItems='center'
+          templateColumns={[
+            'repeat(1, 1fr)',
+            'repeat(1, 1fr)',
+            'repeat(2, 1fr)',
+            'repeat(3, 1fr)',
+          ]}
+        >
           {displayedTrendingPost?.map((post) => (
             <GridItem key={post.id}>
               <PostCard {...post} />

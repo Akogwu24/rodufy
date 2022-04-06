@@ -1,15 +1,16 @@
 import { Box, Text } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react';
-import glassesGuy from '../../../assets/images/guy.svg';
 
-const PostCard = ({ metaImageUrl, description }) => {
+const PostCard = (props) => {
+  const { metaImageUrl, description } = props;
+  console.log({ metaImageUrl, description });
   return (
     <Box
       shadow='md'
       borderRadius='20px'
       overflow={'hidden'}
       my='10'
-      w={['280px']}
+      w={['300px']}
       h={['280px']}
       pos='relative'
     >

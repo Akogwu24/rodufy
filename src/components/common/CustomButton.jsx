@@ -4,15 +4,9 @@ import React from 'react';
 const CustomButton = ({ btnText, w, ...props }) => {
   return (
     <Button
+      className='custom-button'
       bg='secondary'
-      color='#fff'
-      p='5'
       w={w || '130px'}
-      letterSpacing='1px'
-      _hover={{ borderRadius: '10px' }}
-      transition='ease-in all 0.3s'
-      borderRadius={'5px'}
-      _focus={{ border: 'none' }}
       {...props}
     >
       {btnText}
