@@ -8,9 +8,14 @@ const TrainBoySection = () => {
   return (
     <Box py='10'>
       <Container>
-        <Flex justify='space-between' align='center'>
-          <Stack flex={0.7}>
-            <Text as='h1'>
+        <Flex
+          justify='space-between'
+          gap='2rem'
+          direction={['column', 'row', 'row']}
+          align='center'
+        >
+          <Stack flex={[1, 1, 0.7]}>
+            <Text as='h1' fontSize={['', '2rem', '2.5rem']}>
               {' '}
               Everything you’ll need to{' '}
               <Text as='span' color='secondary'>
@@ -24,13 +29,20 @@ const TrainBoySection = () => {
             </Text>
             <CustomButton
               w='100%'
-              size='xl'
+              h='50px'
               btnText='Get Started'
               fontSize='20px'
             />
           </Stack>
-          <Box h='400px'>
-            <Image w='100%' h='100%' src={trainBoy} alt='train passenger' />
+          <Box h='400px' overflow='hidden'>
+            <Image
+              _hover={{ transform: 'scale(1.15)' }}
+              transition='all ease-in-out .5s'
+              w='100%'
+              h='100%'
+              src={trainBoy}
+              alt='train passenger'
+            />
           </Box>
         </Flex>
       </Container>

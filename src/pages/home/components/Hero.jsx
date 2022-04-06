@@ -13,7 +13,12 @@ const Hero = () => {
   return (
     <Stack as='section' bg='primary' py='10' color='#fff'>
       <Container>
-        <HStack py='3' justify='space-between'>
+        <Flex
+          direction={['column', 'row']}
+          gap='2rem'
+          py='3'
+          justify='space-between'
+        >
           <HStack spacing='3'>
             <Box w='3rem'>
               <Image w='100%' h='100%' src={logo} alt='logo' />
@@ -22,22 +27,29 @@ const Hero = () => {
               Rodufy
             </Text>
           </HStack>
-          <HStack spacing='3'>
+          <HStack spacing={['3rem', '1rem']}>
             <Link to='/register'>
-              <CustomButton btnText='Register' />
+              <CustomButton w={['110px', '', '140px']} btnText='Register' />
             </Link>
             <Link to='/login'>
               <CustomButton
+                w={['110px', '', '140px']}
                 btnText='Login'
                 bg='transparent'
                 border='2px solid #EA7052'
               />
             </Link>
           </HStack>
-        </HStack>
-        <Flex pt='10' align='center' justify='space-between'>
-          <Stack flex={[]} maxW='40%'>
-            <Text as='h1'>
+        </Flex>
+        <Flex
+          pt='10'
+          align='center'
+          direction={['column', 'column', 'row']}
+          justify='space-between'
+          gap='2rem'
+        >
+          <Stack flex={[]} maxW={['100%', '100%', '60%', '45%']}>
+            <Text as='h1' fontSize={['2rem', '2.5rem', '', '2.8rem']}>
               Our mission is to{' '}
               <Text as='span' borderBottom='3px solid #fff' color='secondary'>
                 advance
@@ -53,12 +65,27 @@ const Hero = () => {
                 DOWNLOAD <br />
                 APP
               </Text>
-              <Image w={['100px']} src={googlePlay} alt='google play' />
-              <Image w={['100px']} src={apple} alt='apple' />
+              <Image
+                w={['50px', '60px', '70px', '80px']}
+                src={googlePlay}
+                alt='google play'
+              />
+              <Image
+                w={['50px', '60px', '70px', '80px']}
+                src={apple}
+                alt='apple'
+              />
             </HStack>
           </Stack>
-          <Box h='300px'>
-            <Image w='100%' h='100%' src={girl} alt='girl' />
+          <Box w={['100%']} maxW={['400px']}>
+            <Image
+              transition='all ease-in-out .5s'
+              _hover={{ filter: 'sepia(50%)' }}
+              w='100%'
+              h='100%'
+              src={girl}
+              alt='girl'
+            />
           </Box>
         </Flex>
       </Container>

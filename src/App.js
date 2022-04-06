@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import './App.css';
 import AuthenticatedApp from './app/AuthenticatedApp';
 import UnAuthenticatedApp from './app/UnAuthenticatedApp';
+import { AuthContext } from './context/authContext';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated } = useContext(AuthContext);
+  console.log('isAuthenticated', isAuthenticated);
 
-  if (isLoggedIn) return <AuthenticatedApp />;
-  return <UnAuthenticatedApp />;
+  // if (isAuthenticated) return <AuthenticatedApp />;
+  // return <UnAuthenticatedApp />;
+
+  return <AuthenticatedApp />;
 }
 
 export default App;

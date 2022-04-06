@@ -1,6 +1,5 @@
 import {
   Box,
-  Flex,
   HStack,
   Image,
   Link,
@@ -30,6 +29,8 @@ const Footer = () => {
             alignItems='center'
             py='1rem'
             fontSize='20px'
+            flexWrap={'wrap'}
+            gap='1rem'
           >
             <ListItem>
               <Link href='/'>Blog</Link>
