@@ -15,13 +15,13 @@ const TopPosts = ({ posts }) => {
           </Circle>
           <Text fontWeight={'900'}>Top Post</Text>
         </HStack>
-        <Box overflow=''>
-          <Slider {...settings}>
-            {posts?.map((post) => (
-              <PostCard key={post.id} {...post} />
-            ))}
-          </Slider>
-        </Box>
+        {/* <Box overflow=''> */}
+        <Slider {...settings}>
+          {posts?.map((post) => (
+            <PostCard key={post.id} {...post} />
+          ))}
+        </Slider>
+        {/* </Box> */}
       </Container>
     </Box>
   );

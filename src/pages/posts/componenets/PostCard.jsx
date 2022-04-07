@@ -10,6 +10,7 @@ const PostCard = (props) => {
       borderRadius='20px'
       overflow={'hidden'}
       my='10'
+      mx='5'
       w={['300px']}
       h={['280px']}
       pos='relative'

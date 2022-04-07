@@ -3,11 +3,11 @@ import AuthenticatedApp from './app/AuthenticatedApp';
 import UnAuthenticatedApp from './app/UnAuthenticatedApp';
 
 function App() {
-  const tokenInLocalsStorage = localStorage.getItem('11#221#');
+  const tokenInStorage = sessionStorage.getItem('11#221#');
 
-  console.log('hhhhh', tokenInLocalsStorage);
+  console.log('hhhhh', tokenInStorage);
 
-  if (tokenInLocalsStorage) {
+  if (tokenInStorage) {
     return <AuthenticatedApp />;
   } else {
     return <UnAuthenticatedApp />;

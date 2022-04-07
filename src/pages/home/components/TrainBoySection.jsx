@@ -3,8 +3,10 @@ import React from 'react';
 import Container from '../../../components/common/Container';
 import CustomButton from '../../../components/common/CustomButton';
 import trainBoy from '../../../assets/images/train-boy.svg';
+import { useNavigate } from 'react-router-dom';
 
 const TrainBoySection = () => {
+  const navigate = useNavigate();
   return (
     <Box py='10'>
       <Container>
@@ -32,6 +34,7 @@ const TrainBoySection = () => {
               h='50px'
               btnText='Get Started'
               fontSize='20px'
+              onClick={() => navigate('/register')}
             />
           </Stack>
           <Box h='400px' overflow='hidden'>

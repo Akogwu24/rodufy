@@ -4,7 +4,7 @@ import { BASE_URL } from './useFetch';
 
 export const getPosts = async (setPosts, setLoading) => {
   try {
-    const token = localStorage.getItem('11#221#');
+    const token = sessionStorage.getItem('11#221#');
     setLoading(true);
     const {
       data: { data },

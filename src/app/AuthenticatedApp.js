@@ -6,7 +6,7 @@ import Posts from '../pages/posts';
 const AuthenticatedApp = () => {
   // const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
-  const isAuthenticated = localStorage.getItem('11#221#');
+  const isAuthenticated = sessionStorage.getItem('11#221#');
 
   useEffect(() => {
     if (!isAuthenticated) {
