@@ -13,7 +13,7 @@ function Header() {
   }, []);
 
   const handleLogOut = () => {
-    localStorage.removeItem('11#221#');
+    sessionStorage.removeItem('11#221#');
     window.location.href = '/';
   };
   return (

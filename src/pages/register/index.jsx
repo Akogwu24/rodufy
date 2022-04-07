@@ -37,7 +37,7 @@ const Register = () => {
           bgSize='cover'
           bgRepeat='no-repeat'
           bgImage={bgImg}
-          flex={[0, 3, 3, 2]}
+          flex={[0, 0, 3, 2]}
         ></Box>
         <Flex justify='center' align='center' flex={8} bg='gray'>
           <Box bg='#fff' p='10' borderRadius='10px' shadow='md'>
